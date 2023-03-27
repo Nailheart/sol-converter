@@ -1,13 +1,24 @@
 (() => {
-  // Toggle navigation
-  const nav = document.querySelector('.nav');
-  if (nav) {
-    const body = document.querySelector('body');
-    const navToggle = document.querySelector('.nav__toggle');
+  // Clear inputs
+  const clearButtons = document.querySelectorAll('.clear');
+  const inputFields = document.querySelectorAll('.input__group-input');
 
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('nav--active');
-      body.classList.toggle('overflow-hidden');
+  clearButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      inputFields.forEach(input => {
+        input.value = '';
+      })
     });
-  }
+  });
+
+  // Set sol and day
+  const sol = document.querySelector('#sol');
+  const day = document.querySelector('#day');
+  sol.addEventListener('keyup', () => {
+    day.value = (Number(sol.value) * 1.027491252).toFixed(2);
+  });
+
+  day.addEventListener('keyup', () => {
+    sol.value = (Number(day.value) / 1.027491252).toFixed(2);
+  });
 })();

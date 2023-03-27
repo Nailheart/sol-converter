@@ -1,2 +1,132 @@
 @use "common";
-@use "blocks";
+@use "mixins" as *;
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 0;
+
+  span { color: #ff4b55; }
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.converter {
+  @include container;
+
+  min-height: 100vh;
+  padding-top: 60px;
+  padding-bottom: 80px;
+  box-sizing: border-box;
+
+  @include media-max(md) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @include media-max(md) { grid-template-columns: 1fr; }
+}
+
+.intro__lead {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+
+  span { color: #ff4b55; }
+}
+
+.intro__img {
+  width: 250px;
+  max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1.5;
+
+  @include media-max(md) { width: 100%; }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @include media-max(md) { grid-template-columns: 1fr; }
+}
+
+.content__col {
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+.input__group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.input__group-text {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1;
+  height: 40px;
+  padding: 5px 10px;
+  background-color: #ff4b55;
+  border-radius: 6px 0 0 6px;
+  box-sizing: border-box;
+}
+
+.input__group-input {
+  width: 100%;
+  height: 40px;
+  padding: 5px 30px 5px 20px;
+  border: 2px solid #ff4b55;
+  border-radius: 0 6px 6px 0;
+  box-sizing: border-box;
+
+  &::placeholder { opacity: 0; }
+  &:placeholder-shown ~ .clear { display: none; }
+}
+
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  outline: 2px solid transparent;
+  cursor: pointer;
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 10px;
+  transition: .2s;
+
+  &:hover,
+  &:focus-visible {
+    outline-color: #ff4b55;
+  }
+}
+
+.review {
+  margin-top: 40px;
+}
